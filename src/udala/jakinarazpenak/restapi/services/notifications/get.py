@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from DateTime import DateTime
 from plone.restapi.services import Service
 from udala.jakinarazpenak.interfaces import INotificationsUtility

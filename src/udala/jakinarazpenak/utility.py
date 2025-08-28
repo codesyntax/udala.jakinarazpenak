@@ -1,14 +1,11 @@
-# -*- coding: utf-8 -*-
 from BTrees.OOBTree import OOBTree
 from persistent.list import PersistentList
 from plone import api
 from Products.CMFPlone.utils import safe_text
-from udala.jakinarazpenak import FIREBASE_URL
 from udala.jakinarazpenak.notification import Notification
 from udala.jakinarazpenak.notification import send_topic_push
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getUtility
-from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 
 import datetime
@@ -24,7 +21,7 @@ def current_date():
     return my_date.isoformat()
 
 
-class NotificationsUtility(object):
+class NotificationsUtility:
     def __init__(self):
         self.annotations = []
 
@@ -167,13 +164,9 @@ class NotificationsUtility(object):
     def send_notification(self, notification_id):
         notification = self.get_notification_by_id(notification_id)
         if notification is not None:
-
             my_date = safe_text(current_date())
 
-            topics = [
-                "{0}_{1}".format(tag, notification.language)
-                for tag in notification.tags
-            ]
+            topics = [f"{tag}_{notification.language}" for tag in notification.tags]
 
             topic_names = [
                 self.get_tag_name(tag)

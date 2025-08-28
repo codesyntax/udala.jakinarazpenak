@@ -1,9 +1,9 @@
 from AccessControl.SecurityManagement import newSecurityManager
-from udala.jakinarazpenak.interfaces import IBrowserLayer
 from Products.CMFPlone.factory import _DEFAULT_PROFILE
 from Products.CMFPlone.factory import addPloneSite
 from Products.GenericSetup.tool import SetupTool
 from Testing.makerequest import makerequest
+from udala.jakinarazpenak.interfaces import IBrowserLayer
 from zope.interface import directlyProvidedBy
 from zope.interface import directlyProvides
 
@@ -46,8 +46,7 @@ site_id = "Plone"
 payload = {
     "title": "udala.jakinarazpenak",
     "profile_id": _DEFAULT_PROFILE,
-
-"distribution_name": "volto",
+    "distribution_name": "volto",
     "setup_content": False,
     "default_language": "en",
     "portal_timezone": "UTC",

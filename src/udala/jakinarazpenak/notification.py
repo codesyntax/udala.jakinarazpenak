@@ -1,18 +1,17 @@
-# -*- coding: utf-8 -*-
-import json
-from logging import getLogger
-
-import firebase_admin
 from .interfaces import INotification
-from firebase_admin import credentials, messaging
+from firebase_admin import credentials
+from firebase_admin import messaging
+from logging import getLogger
 from plone import api
 from Products.CMFPlone.utils import safe_text
 from zope.interface import implementer
 
+import firebase_admin
+import json
+
 
 @implementer(INotification)
-class Notification(object):
-
+class Notification:
     id = ""
     title = ""
     summary = ""

@@ -1,18 +1,8 @@
-# -*- coding: utf-8 -*-
-from udala.jakinarazpenak import _
-from udala.jakinarazpenak.interfaces import INotification
-from udala.jakinarazpenak.interfaces import INotificationsUtility
-from udala.jakinarazpenak.notification import Notification
 from plone import api
-from plone.autoform.directives import widget
-from Products.Five.browser import BrowserView
-from z3c.form import button
-from z3c.form import field
-from z3c.form import form
-from z3c.form.interfaces import HIDDEN_MODE
-from zope import schema
-from zope.component import getUtility
 from plone.protect.interfaces import IDisableCSRFProtection
+from Products.Five.browser import BrowserView
+from udala.jakinarazpenak.interfaces import INotificationsUtility
+from zope.component import getUtility
 from zope.interface import alsoProvides
 
 

@@ -1,7 +1,7 @@
-from udala.jakinarazpenak import _
-from udala.jakinarazpenak.interfaces import INotificationsUtility
 from plone import api
 from Products.Five.browser import BrowserView
+from udala.jakinarazpenak import _
+from udala.jakinarazpenak.interfaces import INotificationsUtility
 from zope.component import getUtility
 
 

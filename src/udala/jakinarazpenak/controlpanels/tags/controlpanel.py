@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-
 from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
 from collective.z3cform.datagridfield.registry import DictRow
-from udala.jakinarazpenak import _
-from plone import api
 from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
 from plone.app.registry.browser.controlpanel import RegistryEditForm
-from plone.z3cform import layout
 from plone.autoform.directives import widget
+from plone.z3cform import layout
+from udala.jakinarazpenak import _
 from zope import schema
 from zope.interface import Interface
 
@@ -18,7 +16,6 @@ class ITableRowSchema(Interface):
 
 
 class IFirebaseControlPanel(Interface):
-
     # firebase_adminsdk_json = JSONField(
     #     title=_(u"Firebase admin SDK JSON"),
     #     description=_(u"Enter the Firebase API key used to send notifications"),

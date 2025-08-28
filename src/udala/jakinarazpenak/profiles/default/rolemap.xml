@@ -1,14 +1,16 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <rolemap>
   <roles>
-    <role name="Notification Manager"/>
+    <role name="Notification Manager" />
   </roles>
   <permissions>
-  <!-- -*- extra stuff goes here -*- -->
-    <permission name="udala.jakinarazpenak: Manage Notifications" acquire="True">
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-      <role name="Notification Manager"/>
+    <!-- -*- extra stuff goes here -*- -->
+    <permission acquire="True"
+                name="udala.jakinarazpenak: Manage Notifications"
+    >
+      <role name="Manager" />
+      <role name="Site Administrator" />
+      <role name="Notification Manager" />
     </permission>
 
 

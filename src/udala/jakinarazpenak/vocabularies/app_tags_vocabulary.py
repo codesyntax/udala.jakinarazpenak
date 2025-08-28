@@ -1,24 +1,21 @@
-# -*- coding: utf-8 -*-
-
 # from plone import api
-from udala.jakinarazpenak import _
+from plone import api
 from plone.dexterity.interfaces import IDexterityContent
 from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
-from plone import api
 
 
-class VocabItem(object):
+class VocabItem:
     def __init__(self, token, value):
         self.token = token
         self.value = value
 
 
 @implementer(IVocabularyFactory)
-class AppTagsVocabulary(object):
+class AppTagsVocabulary:
     """ """
 
     def __call__(self, context=None):
@@ -34,7 +31,7 @@ class AppTagsVocabulary(object):
         tags = api.portal.get_registry_record("udala.jakinarazpenak.tags")
         for tag in tags:
             items.append(
-                VocabItem(tag["number"], language == "eu" and tag["eu"] or tag["es"])
+                VocabItem(tag["number"], (language == "eu" and tag["eu"]) or tag["es"])
             )
 
         # create a list of SimpleTerm items:

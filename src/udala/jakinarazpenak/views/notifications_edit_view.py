@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
+from plone import api
 from udala.jakinarazpenak import _
 from udala.jakinarazpenak.interfaces import INotification
 from udala.jakinarazpenak.interfaces import INotificationsUtility
-from udala.jakinarazpenak.notification import Notification
-from plone import api
 from z3c.form import button
 from z3c.form import field
 from z3c.form import form

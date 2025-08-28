@@ -1,19 +1,11 @@
-# -*- coding: utf-8 -*-
-from udala.jakinarazpenak.restapi.services.notifications.get import NotificationsGet
-from udala.jakinarazpenak.interfaces import INotificationsUtility
-from plone import api
 from plone.restapi.batching import HypermediaBatch
-from plone.restapi.interfaces import IExpandableElement
-from plone.restapi.services import Service
-from zope.component import adapter
+from udala.jakinarazpenak.interfaces import INotificationsUtility
+from udala.jakinarazpenak.restapi.services.notifications.get import NotificationsGet
 from zope.component import getUtility
-from zope.interface import implementer
-from zope.interface import Interface
 
 
 class InboxGet(NotificationsGet):
     def reply(self):
-
         results = {"@id": f"{self.context.absolute_url()}/@inbox"}
 
         notification_utility = getUtility(INotificationsUtility)
