@@ -5,6 +5,10 @@
     i18n_domain="udala.jakinarazpenak"
     >
 
-  <!-- -*- extra stuff goes here -*- -->
-  <include package=".tags" />
+  -*- extra stuff goes here -*-
+  <include package=".inbox" />
+  <include package=".notifications" />
+  <include package=".app_tags_service" />
+
+
 </configure>

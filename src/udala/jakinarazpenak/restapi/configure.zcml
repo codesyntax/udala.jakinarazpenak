@@ -6,5 +6,8 @@
     >
 
   <!-- -*- extra stuff goes here -*- -->
-  <include package=".tags" />
+
+  <include package=".services" />
+
+
 </configure>

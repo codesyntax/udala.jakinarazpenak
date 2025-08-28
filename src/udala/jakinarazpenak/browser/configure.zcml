@@ -5,6 +5,13 @@
     i18n_domain="udala.jakinarazpenak"
     >
 
-  <!-- -*- extra stuff goes here -*- -->
-  <include package=".tags" />
+
+  <!-- Publish static files -->
+  <browser:resource
+      name="notifications-edit-form.js"
+      file="static/notifications-edit-form.js"
+      />
+
+
+
 </configure>

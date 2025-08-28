@@ -4,5 +4,7 @@
 >
 
   <!-- -*- extra stuff goes here -*- -->
-
+  <records
+    interface="udala.jakinarazpenak.controlpanels.tags.controlpanel.IFirebaseControlPanel"
+    prefix="udala.jakinarazpenak" />
 </registry>

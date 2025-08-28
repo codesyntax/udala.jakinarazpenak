@@ -9,7 +9,7 @@
 
     <permission
         id="udala.jakinarazpenak.ManageNotifications"
-        title="udala.jakinarazpenak: Manage Notifications"
+        title="eibarkoudala.notifications: Manage Notifications"
         />
 
 

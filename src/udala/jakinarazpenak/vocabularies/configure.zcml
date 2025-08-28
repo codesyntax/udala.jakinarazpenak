@@ -1,5 +1,8 @@
 <configure xmlns="http://namespaces.zope.org/zope">
 
   <!-- -*- extra stuff goes here -*- -->
-
+  <utility
+      name="udala.jakinarazpenak.AppTagsVocabulary"
+      component=".app_tags_vocabulary.AppTagsVocabularyFactory"
+      />
 </configure>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="News Item" meta_type="Dexterity FTI" i18n:domain="plone"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
+
+ <action i18n:domain="udala.jakinarazpanek"
+    title="Create notification" action_id="create-notification" category="object"
+    condition_expr=""
+    icon_expr="string:toolbar-action/edit" link_target=""
+    url_expr="string:${object_url}/notification-create-view" visible="True">
+  <permission value="udala.jakinarazpenak: Manage Notifications"/>
+ </action>
+
+</object>

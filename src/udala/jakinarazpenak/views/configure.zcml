@@ -1,0 +1,69 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="udala.jakinarazpenak"
+    >
+
+  <!-- -*- extra stuff goes here -*- -->
+
+  <adapter factory=".notifications_edit_view.TagValidator" />
+
+  <browser:page
+      name="empty-notification-create-view"
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      class=".notification_create_view.EmptyNotificationCreateView"
+      permission="udala.jakinarazpenak.ManageNotifications"
+      layer="..interfaces.IBrowserLayer"
+      />
+
+
+
+  <browser:page
+      name="notification-create-view"
+      for="plone.app.contenttypes.interfaces.INewsItem"
+      class=".notification_create_view.NotificationCreateView"
+      permission="udala.jakinarazpenak.ManageNotifications"
+      layer="..interfaces.IBrowserLayer"
+      zcml:condition="installed plone.app.contenttypes"
+      />
+
+  <browser:page
+      name="notification-create-view"
+      for="plone.app.contenttypes.interfaces.IEvent"
+      class=".notification_create_view.NotificationCreateView"
+      permission="udala.jakinarazpenak.ManageNotifications"
+      layer="..interfaces.IBrowserLayer"
+      zcml:condition="installed plone.app.contenttypes"
+      />
+
+
+  <browser:page
+      name="notifications-edit-view"
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      class=".notifications_edit_view.NotificationsEditView"
+      permission="udala.jakinarazpenak.ManageNotifications"
+      layer="..interfaces.IBrowserLayer"
+      />
+
+  <browser:page
+      name="notifications-management-view"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".notifications_management_view.NotificationsManagementView"
+      template="notifications_management_view.pt"
+      permission="udala.jakinarazpenak.ManageNotifications"
+      layer="..interfaces.IBrowserLayer"
+      />
+
+  <browser:page
+      name="delete-all-notifications-view"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".delete_all_notifications_view.DeleteAllNotificationsView"
+      permission="udala.jakinarazpenak.ManageNotifications"
+      layer="..interfaces.IBrowserLayer"
+      />
+
+
+
+</configure>

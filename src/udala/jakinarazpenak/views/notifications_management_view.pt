@@ -1,0 +1,144 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="here/prefs_main_template/macros/master"
+      i18n:domain="udala.jakinarazpenak"
+>
+
+  <head>
+    <metal:js fill-slot="top_slot">
+      <link href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.18/b-1.5.6/sl-1.3.0/datatables.min.css"
+            rel="stylesheet"
+            type="text/css"
+      />
+      <!-- prettier-ignore -->
+      <style>
+      #notifications .url {
+        overflow: hidden;
+      }
+      </style>
+
+      <script src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.18/b-1.5.6/sl-1.3.0/datatables.min.js"
+              type="text/javascript"
+      ></script>
+
+      <script src="https://momentjs.com/downloads/moment.js"
+              type="text/javascript"
+      ></script>
+
+      <!-- prettier-ignore -->
+      <script>
+      $(document).ready(function () {
+        $.noConflict();
+        var portal_url = $('body').data('portal-url');
+
+        var table = $("#notifications").DataTable({
+          language: {
+            url: "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Basque.json"
+          },
+          ajax: {
+            url: portal_url + '/@notifications',
+            type: "GET",
+            headers: { Accept: "application/json" }
+          },
+          dom: "frti",
+          columns: [
+            { title: 'actions' },
+            { data: "id", title: "ID", visible: false },
+            { data: "title", title: "Izenburua" },
+            // { data: "summary", title: "Laburpena" },
+            { data: "tags", title: "Etiketak" },
+            { data: "language", title: "Hizkuntza" },
+            { data: "created", title: "Sorrera data" },
+            {
+              data: "sent", title: "Bidalita?", "render": function (data, type, row) {
+                return (data === true) ? '<span class="glyphicon glyphicon-ok"></span>' : '<span class="glyphicon glyphicon-remove"></span>';
+              }
+            },
+            { data: "sent_date", title: "Bidalketa data" },
+
+          ],
+          columnDefs: [
+            {
+              targets: 0,
+              data: null,
+              defaultContent: `<button class='edit btn btn-secondary'>Editatu</button>`
+            },
+            {
+              targets: 5,
+              render: function (data, type, row, meta) {
+                return window.moment(data).format('YYYY-MM-DD')
+              }
+            },
+            {
+              targets: 7,
+              render: function (data, type, row, meta) {
+                return window.moment(data).format('YYYY-MM-DD')
+              }
+            }
+
+          ],
+        });
+
+        $('#notifications tbody').on('click', 'button.edit', function () {
+          var data = table.row($(this).parents('tr')).data();
+          window.location = portal_url + '/' + data.language + '/@@notifications-edit-view?id=' + data.id;
+
+        });
+
+
+      });
+      </script>
+    </metal:js>
+  </head>
+
+  <body>
+    <metal:main fill-slot="prefs_configlet_main">
+      <a id="setup-link"
+         href=""
+         tal:attributes="
+           href string:$portal_url/plone_control_panel;
+         "
+         i18n:domain="plone"
+         i18n:translate=""
+      >
+      Site Setup
+      </a>
+
+      <div class="container">
+        <p class="mt-5 d-flex">
+          <a class="btn btn-default btn-primary"
+             href=""
+             tal:attributes="
+               href string:${context/absolute_url}/empty-notification-create-view;
+             "
+             i18n:translate=""
+          >
+          Create empty notification
+          </a>
+
+          <form action=""
+                method="post"
+                tal:attributes="
+                  action string:${context/absolute_url}/delete-all-notifications-view;
+                "
+          >
+            <button class="btn btn-default btn-danger"
+                    href=""
+                    type="submit"
+                    i18n:translate=""
+            >
+          Delete all notifications
+            </button>
+          </form>
+        </p>
+
+        <table class="table table-striped table-hover"
+               id="notifications"
+        ></table>
+      </div>
+    </metal:main>
+  </body>
+
+</html>

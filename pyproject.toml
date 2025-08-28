@@ -5,29 +5,30 @@ description = "A new addon for Plone"
 readme = "README.md"
 license = "GPL-2.0-only"
 requires-python = ">=3.10"
-authors = [
-    { name = "CodeSyntax", email = "plone@codesyntax.com" },
-]
-keywords = [
-    "CMS",
-    "Plone",
-    "Python",
-]
+authors = [{ name = "CodeSyntax", email = "plone@codesyntax.com" }]
+keywords = ["CMS", "Plone", "Python"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: Web Environment",
-    "Framework :: Plone","Framework :: Plone :: 6.0","Framework :: Plone :: 6.1",
+    "Framework :: Plone",
+    "Framework :: Plone :: 6.0",
+    "Framework :: Plone :: 6.1",
     "Framework :: Plone :: Addon",
     "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     "Operating System :: OS Independent",
-    "Programming Language :: Python","Programming Language :: Python :: 3.10","Programming Language :: Python :: 3.11","Programming Language :: Python :: 3.12","Programming Language :: Python :: 3.13",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 dependencies = [
     "Products.CMFPlone",
     "plone.api",
     "plone.restapi",
-    "plone.volto",
-    
+    "collective.z3cform.datagridfield",
+    "firebase-admin",
+
 ]
 
 [project.optional-dependencies]
@@ -69,9 +70,7 @@ build-backend = "hatchling.build"
 strict-naming = true
 
 [tool.hatch.build.targets.sdist]
-exclude = [
-  "/.github",
-]
+exclude = ["/.github"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/udala"]
@@ -137,7 +136,8 @@ lint.select = [
     # mccabe
     "C90",
     # pycodestyle
-    "E", "W",
+    "E",
+    "W",
     # pyflakes
     "F",
     # pygrep-hooks
@@ -174,9 +174,7 @@ testpaths = ["tests"]
 source_pkgs = ["udala.jakinarazpenak", "tests"]
 branch = true
 parallel = true
-omit = [
-  "src/udala/jakinarazpenak/locales/*.py",
-]
+omit = ["src/udala/jakinarazpenak/locales/*.py"]
 
 [tool.zest-releaser]
 python-file-with-version = "src/udala/jakinarazpenak/__init__.py"
