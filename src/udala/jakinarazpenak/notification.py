@@ -8,6 +8,7 @@ from zope.interface import implementer
 
 import firebase_admin
 import json
+import typing
 
 
 @implementer(INotification)
@@ -16,7 +17,7 @@ class Notification:
     title = ""
     summary = ""
     url = ""
-    tags = []
+    tags: typing.ClassVar = []
     language = ""
     created = ""
     sent = ""

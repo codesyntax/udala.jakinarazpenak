@@ -42,6 +42,6 @@ class InboxGet(NotificationsGet):
         if batch.links:
             results["batching"] = batch.links
 
-        results["items"] = [item for item in batch]
+        results["items"] = list(batch)
 
         return results

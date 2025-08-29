@@ -22,7 +22,7 @@ class TooManyTags(Invalid):
 
 class TagValidator(validator.SimpleFieldValidator):
     def validate(self, value):
-        super(TagValidator, self).validate(value)
+        super().validate(value)
         if not value:
             raise MissingTags(_("Tags are required"))
 
@@ -48,29 +48,29 @@ class NotificationsEditView(form.Form):
     #     )
 
     def _get_id(self):
-        id = self.request.get("id", None)
+        item_id = self.request.get("id", None)
 
-        if id is None:
+        if item_id is None:
             # Check if we are submitting the form and get the id from there
-            id = self.request.get("form.widgets.id", None)
+            item_id = self.request.get("form.widgets.id", None)
 
-        return id
+        return item_id
 
     def updateWidgets(self):
-        super(NotificationsEditView, self).updateWidgets()
+        super().updateWidgets()
         self.request.set("disable_border", True)
         self.fields["tags"].widgetFactory = CheckBoxFieldWidget
         self.widgets["id"].mode = HIDDEN_MODE
 
     def update(self):
-        super(NotificationsEditView, self).update()
+        super().update()
         self.actions["save"].klass += " btn-primary"
         self.actions["send"].klass += " btn-primary"
 
     def getContent(self):
-        id = self._get_id()
+        item_id = self._get_id()
         notification_utility = getUtility(INotificationsUtility)
-        notification = notification_utility.get_notification_by_id(id)
+        notification = notification_utility.get_notification_by_id(item_id)
         return notification.to_dict()
 
     @button.buttonAndHandler(_("Save notification"), name="save")
@@ -87,7 +87,7 @@ class NotificationsEditView(form.Form):
             _("Notification was edited correctly"), type="info", request=self.request
         )
 
-        url = f"{self.context.absolute_url()}/@@notifications-edit-view?id={data.get('id')}"
+        url = f"{self.context.absolute_url()}/@@notifications-edit-view?id={data.get('id')}"  # noqa: E501
         return self.request.response.redirect(url)
 
     @button.buttonAndHandler(_("Send notification"), name="send")
@@ -111,7 +111,7 @@ class NotificationsEditView(form.Form):
                 type="error",
                 request=self.request,
             )
-        url = f"{self.context.absolute_url()}/@@notifications-edit-view?id={data.get('id')}"
+        url = f"{self.context.absolute_url()}/@@notifications-edit-view?id={data.get('id')}"  # noqa: E501
         return self.request.response.redirect(url)
 
     @button.buttonAndHandler(_("Back"), name="back")

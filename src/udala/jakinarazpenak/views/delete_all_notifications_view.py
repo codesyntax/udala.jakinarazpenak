@@ -9,9 +9,7 @@ class DeleteAllNotificationsView(BrowserView):
     def __call__(self):
         utility = getUtility(INotificationsUtility)
         utility.delete_all_notifications()
-        url = "{0}/{1}".format(
-            self.context.absolute_url(), "notifications-management-view"
-        )
+        url = f"{self.context.absolute_url}/notifications-management-view"
         api.portal.show_message(
             _("Notifications were deleted correctly"), type="info", request=self.request
         )

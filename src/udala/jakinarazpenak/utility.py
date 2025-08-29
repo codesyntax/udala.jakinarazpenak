@@ -108,9 +108,11 @@ class NotificationsUtility:
 
         return None
 
-    def add_notification(self, data={}):
+    def add_notification(self, data=None):
+        if data is None:
+            data = {}
         record = OOBTree()
-        notification_id = data.get("id", None)
+        notification_id = data.get("id")
         if notification_id is None:
             notification_id = uuid.uuid4().hex
 
@@ -132,23 +134,25 @@ class NotificationsUtility:
 
         return notification_id
 
-    def edit_notification(self, notification_id, data={}):
+    def edit_notification(self, notification_id, data=None):
+        if data is None:
+            data = {}
         notification = self.get_notification_by_id(notification_id)
         if notification is not None:
             # Extract this to get_notification_record
             record = self.get_notification_record_by_id(notification_id)
             if record is not None:
-                if data.get("title", None) is not None:
+                if data.get("title") is not None:
                     record["title"] = safe_text(data.get("title"))
-                if data.get("summary", None) is not None:
+                if data.get("summary") is not None:
                     record["summary"] = safe_text(data.get("summary"))
-                if data.get("url", None) is not None:
+                if data.get("url") is not None:
                     record["url"] = safe_text(data.get("url"))
-                if data.get("language", None) is not None:
+                if data.get("language") is not None:
                     record["language"] = safe_text(data.get("language"))
-                if data.get("tags", None) is not None:
+                if data.get("tags") is not None:
                     record["tags"] = tuple(data.get("tags", []))
-                if data.get("sent", None) is not None:
+                if data.get("sent") is not None:
                     record["sent"] = True
                     record["sent_date"] = safe_text(current_date())
 

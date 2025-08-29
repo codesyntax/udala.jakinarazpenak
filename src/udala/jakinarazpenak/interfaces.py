@@ -87,5 +87,7 @@ class INotification(Interface):
 
 
 class INotificationsUtility(Interface):
-    def add_notification(notification_data={}):
-        """add a new notification with the data on the parameter. Returns the notification_id"""
+    def add_notification(notification_data=None):
+        """add a new notification with the data on the parameter.
+        Returns the notification_id
+        """
