@@ -30,7 +30,13 @@ class NotificationsUtility:
             portal = api.portal.get()
             annotations = IAnnotations(portal)
             if ANNOTATION_KEY not in annotations:
-                annotations[ANNOTATION_KEY] = PersistentList()
+                annotations[ANNOTATION_KEY] = OOBTree()
+            elif isinstance(annotations[ANNOTATION_KEY], PersistentList):
+                old_list = annotations[ANNOTATION_KEY]
+                new_tree = OOBTree()
+                for record in old_list:
+                    new_tree[record["id"]] = record
+                annotations[ANNOTATION_KEY] = new_tree
 
             self.annotations = annotations[ANNOTATION_KEY]
 
@@ -38,7 +44,13 @@ class NotificationsUtility:
         portal = api.portal.get()
         annotations = IAnnotations(portal)
         if ANNOTATION_KEY not in annotations:
-            annotations[ANNOTATION_KEY] = PersistentList()
+            annotations[ANNOTATION_KEY] = OOBTree()
+        elif isinstance(annotations[ANNOTATION_KEY], PersistentList):
+            old_list = annotations[ANNOTATION_KEY]
+            new_tree = OOBTree()
+            for record in old_list:
+                new_tree[record["id"]] = record
+            annotations[ANNOTATION_KEY] = new_tree
 
         return annotations[ANNOTATION_KEY]
 
@@ -50,7 +62,7 @@ class NotificationsUtility:
         return n
 
     def delete_all_notifications(self):
-        self._save_all_annotations(PersistentList())
+        self._save_all_annotations(OOBTree())
 
     def _save_all_annotations(self, annotations):
         portal = api.portal.get()
@@ -58,55 +70,52 @@ class NotificationsUtility:
 
     def _add_to_annotation(self, record):
         annotations = self._initialize()
-        annotations.append(record)
+        annotations[record["id"]] = record
         self._save_all_annotations(annotations)
 
     def _save_to_annotation(self, notification_id, record):
         annotations = self._initialize()
-        new_values = PersistentList()
-        for annotation in annotations:
-            if annotation["id"] == notification_id:
-                new_values.append(record)
-            else:
-                new_values.append(annotation)
-
-        self._save_all_annotations(new_values)
+        annotations[notification_id] = record
+        self._save_all_annotations(annotations)
 
     def get_notifications(self):
         annotations = self._initialize()
-        items = [self._record_to_notification(annotation) for annotation in annotations]
+        items = [
+            self._record_to_notification(annotation)
+            for annotation in annotations.values()
+        ]
 
         return sorted(items, key=lambda x: x.created, reverse=True)
 
     def get_notifications_by_tags(self, tags):
         annotations = self._initialize()
-        items = [item for item in annotations if set(tags).intersection(item["tags"])]
+        items = [
+            item
+            for item in annotations.values()
+            if set(tags).intersection(item["tags"])
+        ]
         return [self._record_to_notification(item) for item in items]
 
     def get_notifications_by_tag_and_language(self, tags, lang):
         annotations = self._initialize()
         items = [
             item
-            for item in annotations
+            for item in annotations.values()
             if set(tags).intersection(item["tags"]) and lang == item["language"]
         ]
         return [self._record_to_notification(item) for item in items]
 
     def get_notification_by_id(self, notification_id=None):
         annotations = self._initialize()
-        items = [item for item in annotations if item["id"] == notification_id]
-        if items:
-            return self._record_to_notification(items[0])
+        item = annotations.get(notification_id)
+        if item is not None:
+            return self._record_to_notification(item)
 
         return None
 
     def get_notification_record_by_id(self, notification_id=None):
         annotations = self._initialize()
-        items = [item for item in annotations if item["id"] == notification_id]
-        if items:
-            return items[0]
-
-        return None
+        return annotations.get(notification_id)
 
     def add_notification(self, data=None):
         if data is None:
