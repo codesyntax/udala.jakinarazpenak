@@ -1,10 +1,30 @@
-# udala.jakinarazpenak
+<div align="center">
+    <h1 align="center">udala.jakinarazpenak</h1>
+</div>
+<div align="center">
+[![PyPI](https://img.shields.io/pypi/v/udala.jakinarazpenak)](https://pypi.org/project/udala.jakinarazpenak/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/udala.jakinarazpenak)](https://pypi.org/project/udala.jakinarazpenak/)
+[![PyPI - Wheel](https://img.shields.io/pypi/wheel/udala.jakinarazpenak)](https://pypi.org/project/udala.jakinarazpenak/)
+[![PyPI - License](https://img.shields.io/pypi/l/udala.jakinarazpenak)](https://pypi.org/project/udala.jakinarazpenak/)
+[![PyPI - Status](https://img.shields.io/pypi/status/udala.jakinarazpenak)](https://pypi.org/project/udala.jakinarazpenak/)
 
-A new addon for Plone
+[![PyPI - Plone Versions](https://img.shields.io/pypi/frameworkversions/plone/udala.jakinarazpenak)](https://pypi.org/project/udala.jakinarazpenak/)
+
+[![CI](https://github.com/codesyntax/udala.jakinarazpenak/actions/workflows/ci.yml/badge.svg)](https://github.com/codesyntax/udala.jakinarazpenak/actions/workflows/ci.yml)
+![Code Style](https://img.shields.io/badge/Code%20Style-Black-000000)
+
+[![GitHub contributors](https://img.shields.io/github/contributors/codesyntax/udala.jakinarazpenak)](https://github.com/codesyntax/udala.jakinarazpenak)
+[![GitHub Repo stars](https://img.shields.io/github/stars/codesyntax/udala.jakinarazpenak?style=social)](https://github.com/codesyntax/udala.jakinarazpenak)
+
+</div>
+
+A Plone addon providing specific functionality for UdalPlone projects.
 
 ## Features
 
-TODO: List our awesome features
+- Custom content types and views specific to udala.jakinarazpenak
+- RestAPI endpoints
+- Volto-ready backend setup
 
 ## Installation
 
@@ -31,7 +51,6 @@ make create-site
 -   [uv](https://6.docs.plone.org/install/create-project-cookieplone.html#uv)
 -   [Make](https://6.docs.plone.org/install/create-project-cookieplone.html#make)
 -   [Git](https://6.docs.plone.org/install/create-project-cookieplone.html#git)
--   [Docker](https://docs.docker.com/get-started/get-docker/) (optional)
 
 ### Installation 🔧
 
@@ -48,8 +67,7 @@ make create-site
     make install
     ```
 
-
-### Add features using `plonecli` or `bobtemplates.plone`
+### Add features using `plonecli`
 
 This package provides markers as strings (`<!-- extra stuff goes here -->`) that are compatible with [`plonecli`](https://github.com/plone/plonecli) and [`bobtemplates.plone`](https://github.com/plone/bobtemplates.plone).
 These markers act as hooks to add all kinds of subtemplates, including behaviors, control panels, upgrade steps, or other subtemplates from `plonecli`.
@@ -66,21 +84,6 @@ For example, you can add a content type to your package with the following comma
 make add content_type
 ```
 
-You can add a behavior with the following command.
-
-```shell
-make add behavior
-```
-
-```{seealso}
-You can check the list of available subtemplates in the [`bobtemplates.plone` `README.md` file](https://github.com/plone/bobtemplates.plone/?tab=readme-ov-file#provided-subtemplates).
-See also the documentation of [Mockup and Patternslib](https://6.docs.plone.org/classic-ui/mockup.html) for how to build the UI toolkit for Classic UI.
-```
-
 ## License
 
 The project is licensed under GPLv2.
-
-## Credits and acknowledgements 🙏
-
-Generated using [Cookieplone (0.9.7)](https://github.com/plone/cookieplone) and [cookieplone-templates (8004290)](https://github.com/plone/cookieplone-templates/commit/8004290a4abc3f581e3111b973522c64c3463683) on 2025-08-28 15:34:16.204022. A special thanks to all contributors and supporters!
