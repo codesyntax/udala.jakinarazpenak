@@ -41,4 +41,4 @@ var/
 /sources/
 /venv/
 constraints*.txt
-requirements*.txt
+requirements*.txt.mxdev_cache/
